@@ -1,0 +1,227 @@
+{extend name="base" /}
+{block name="title"}编辑问卷{/block}
+{block name="css"}
+<style>
+.my-option{
+width:20%;
+/* display: block; */
+
+height: 34px;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.42857143;
+color: #555;
+background-color: #fff;
+background-image: none;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+</style>
+{/block}
+{block name="body"}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+  <div class="row">
+    <form action="/admin/table/update" method="post" class="add-article-form">
+      <div class="col-md-9">
+        <h1 class="page-header">编辑问卷</h1>
+        <div class="add-article-box">
+          <h2 class="add-article-box-title"><span>问卷名称</span></h2>
+          <div class="add-article-box-content">
+            <input name="title" type="text" class="form-control" placeholder="请输入问卷名称" value="{$table.title}" autocomplete="off">
+            <span class="prompt-text">创建一个问卷的标题</span>
+          </div>
+        </div>
+        <div class="add-article-box" id="desc">
+          <h2 class="add-article-box-title"><span>问卷介绍</span></h2>
+          <div class="add-article-box-content">
+            <textarea class="form-control" name="description" autocomplete="off">{$table.description}</textarea>
+            <span class="prompt-text">问卷介绍，介绍问卷的用途</span>
+          </div>
+        </div>
+
+
+{foreach $table['question'] as $k=>$vo}
+<div class="add-article-box">
+
+{if $vo['type']=='2'}
+	<h2 class="add-article-box-title">
+		<span>Q-{$k}：文本题 </span>
+		<span id="question1">
+			<input type="radio" name="question[1][require]" value="0" checked=""> 必选 
+			<input type="radio" name="question[1][require]" value="1"> 非必选 
+			<input type="hidden" name="question[1][type]" value="2">
+		</span>
+		<button type="button" class="close question-close" id="remove1" aria-label="Close"><span aria-hidden="true"><font><font>×</font></font></span></button>
+	</h2>
+	<div class="add-article-box-content"><input type="text" class="form-control" placeholder="请输入问卷名称" name="question[1][name]" autocomplete="off" value=""></div>
+
+{else /}
+	<h2 class="add-article-box-title">
+		<span>Q-{$k}：文本题 </span>
+		<span> 
+			<input type="radio" name="question[1][require]" value="0" checked=""> 必选 
+			<input type="radio" name="question[1][require]" value="1"> 非必选
+			<input type="hidden" name="question[1][type]" value="0">
+		</span> 
+		<button type="button" class="btn btn-primary option-add" id="question1">添加答案</button> 
+		<button type="button" class="close question-close" id="remove1">
+			<span>×</span>
+		</button>
+	</h2>
+	<div class="add-article-box-content">
+		<input type="text" class="form-control" placeholder="请输入题目名称" name="question[1][name]" autocomplete="off">
+		<input type="text" class="my-option" placeholder="请输入题目答案" name="question[1][option][]" autocomplete="off">
+		<button type="button" class="option-close"><span>×</span></button>
+	</div>
+
+{/if}
+
+</div>
+
+{/foreach}
+
+
+
+
+
+
+      </div>
+      <div class="col-md-3">
+        <h1 class="page-header">操作</h1>
+        <div class="add-article-box">
+          <h2 class="add-article-box-title"><span>问题类型</span></h2>
+          <div class="add-article-box-content text-center">          
+                <label>
+                  <button type="button" class="btn btn-primary my-btn" alt="radio">单选题</button>
+                </label>
+             
+                <label>
+                  <button type="button" class="btn btn-primary my-btn" alt="checkbox">多选题</button>
+                </label>
+            
+                <label>
+                  <button type="button" class="btn btn-primary my-btn" alt="text">文本题</button>
+                </label>
+          </div>
+        </div>
+
+        <div class="add-article-box">
+          <h2 class="add-article-box-title"><span>调查发布</span></h2>
+          <div class="add-article-box-content">
+            <input type="hidden" name="author" value="{:session('admin_name')}"/>
+            <p><label>是否发布：</label>
+                <input type="radio" name="visibility" value="0" checked/>发布
+                <input type="radio" name="visibility" value="1" />不发布
+            </p>
+            <p><label>时间截止到：</label><span class="article-time-display"><input  type="text" name="endtime" placeholder="例如：2019-09-09" value="2019-09-09"/></span></p>
+          </div>
+          <div class="add-article-box-footer">
+            <button class="btn btn-primary" type="submit" name="submit">确定</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+
+  // 计数器，用来计算产生多少个题目
+  var ag = 0;
+  $(".my-btn").click(function(){
+  
+    ag++;
+    // 获取buttn按钮的
+    // str = $(this).html();
+    str =  $(this).attr('alt');
+    // alert(str);
+    switch(str)
+    {
+      case 'radio':
+        text = ahtml(ag,'单选题','0');
+        $("#desc").after(text);
+        break;
+      case 'checkbox':
+        text = ahtml(ag,'多选题','1');
+        $("#desc").after(text);
+        
+        break;
+      default:
+        text = "<div class='add-article-box'><h2 class='add-article-box-title'><span>Q-"+ag+"：文本题 </span><span id='question"+ag+"'><input type='radio' name='question["+ag+"][require]' value='0' checked/> 必选 <input type='radio' name='question["+ag+"][require]' value='1' /> 非必选 <input type='hidden' name='question["+ag+"][type]' value='2'/ ></span><button type='button' class='close question-close' id='remove"+ag+"' aria-label='Close'><span aria-hidden='true'>&times;</span></button></h2><div class='add-article-box-content'><input type='text' class='form-control' placeholder='请输入问卷名称' name='question["+ag+"][name]' autocomplete='off' ></div></div>";
+        $("#desc").after(text);
+
+    }
+
+
+
+    qclose();
+    oclose();
+    oadd(ag);
+
+    // 清理除本选项外的所有删除按钮
+    for (var i = 1; i < ag; i++) {
+      $("#remove"+i).remove();
+    }
+
+  });
+
+// 删除问题（递归）
+function qclose(){
+   $('.question-close').click(function(){
+      // 计数器减一
+      ag--;       
+      // 删除本问题
+      $(this).parents('.add-article-box').remove();
+      // 在下个问题添加
+      if(ag!=0){
+       
+        button = "<button type='button' class='close question-close' id='remove"+ag+"' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+        $("#question"+ag).after(button);
+        qclose();
+      }
+    })
+
+}
+
+
+// 删除属于自己的答案
+function oclose(){
+    $('.option-close').click(function(){
+      // 删除前面的选项
+      $(this).prev().remove();
+      // 删除按钮
+      $(this).remove();
+
+  })
+}
+// 添加答案
+function oadd(ag){
+    $('.option-add').click(function(){
+     var add =  "<input type='text' class='my-option' placeholder='请输入题目答案'' name='question["+ag+"][option][]' autocomplete='off'><button type='button' class='option-close'><span>&times;</span></button>";
+      $(this).parent().next().append(add);
+      // 执行一次
+      oclose();
+  })
+}
+
+// 添加html代码
+function ahtml(ag,type,t){
+
+  return  "<div class='add-article-box' ><h2 class='add-article-box-title'><span>Q-"+ag+"："+type+"</span><span> <input type='radio' name='question["+ag+"][require]' value='0' checked/> 必选 <input type='radio' name='question["+ag+"][require]' value='1' />非必选<input type='hidden' name='question["+ag+"][type]' value='"+t+"'/></span> <button type='button' class='btn btn-primary option-add' id='question"+ag+"'>添加答案</button> <button type='button' class='close question-close' id='remove"+ag+"'><span>&times;</span></button></h2><div class='add-article-box-content'><input type='text' class='form-control' placeholder='请输入题目名称' name='question["+ag+"][name]' autocomplete='off' ><input type='text' class='my-option' placeholder='请输入题目答案' name='question["+ag+"][option][]' autocomplete='off' ><button type='button' class='option-close'><span>&times;</span></button></div></div>";
+
+}  
+
+})
+
+
+
+</script>   
+
+{/block}
+{blcok name="js"}
+
+
+
+
+
+{/blcok}

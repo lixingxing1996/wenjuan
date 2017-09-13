@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登录-问卷调查</title>
+  <link rel="stylesheet" type="text/css" href="__ASSWTS__/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="__ASSWTS__/css/style.css">
+  <link rel="stylesheet" type="text/css" href="__ASSWTS__/css/login.css">
+  <link rel="apple-touch-icon-precomposed" href="__ASSWTS__/images/icon/icon.png">
+  <link rel="shortcut icon" href="__ASSWTS__/images/icon/favicon.ico">
+  <script src="__ASSWTS__js/jquery-2.1.4.min.js"></script>
+  </head>
+  <body class="user-select">
+    <div class="container">
+      <div class="siteIcon">
+        <img src="__ASSWTS__/images/icon/icon.png" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用问卷调查系统" draggable="false" />
+      </div>
+      <form action="/admin/login/login" method="post" autocomplete="off" class="form-signin">
+        <h2 class="form-signin-heading">管理员登录</h2>
+        <label class="sr-only">用户名</label>
+          <input type="text"  name="username" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
+        <label  class="sr-only">密码</label>
+          <input type="password" name="password" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
+        <label  class="sr-only">验证码</label>
+          <input type="text"  name="verify" class="form-control" placeholder="请输入验证码" required autofocus autocomplete="off" maxlength="10">
+          <img src="{:captcha_src()}" alt="点击更换" title="点击更换" onclick="this.src='{:captcha_src()}?time='+Math.random()"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >登录</button></a>
+      </form>
+      <div class="footer">
+        <p>
+          <a href="/index" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到前台 →</a>
+        </p>
+      </div>
+    </div>
+    
+  </body>
+</html>

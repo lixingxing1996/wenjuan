@@ -1,0 +1,94 @@
+{extend name="base" /}
+{block name="title"}后台首页{/block}
+
+{block name="body"}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+      <h1 class="page-header">信息总览</h1>
+      <div class="row placeholders">
+        <div class="col-xs-6 col-sm-6 placeholder">
+          <h4>问卷调查</h4>
+          <span class="text-muted">0 条</span> </div>
+       
+        <div class="col-xs-6 col-sm-6 placeholder">
+          <h4>调查人数</h4>
+          <span class="text-muted">0</span> </div>
+      </div>
+      <h1 class="page-header">状态</h1>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <tbody>
+            <tr>
+              <td>登录者: <span>{:session('admin_name')}</span>，这是您第 <span>13</span> 次登录</td>
+            </tr>
+            <tr>
+              <td>上次登录时间: 2016-01-08 15:50:28 , 上次登录IP: ::1:55570</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h1 class="page-header">系统信息</h1>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr> </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>网站域名/端口:</td>
+              <td>{$config.url}／{$config.server_port}</td>
+              <td>服务器软件:</td>
+              <td>{$config.server_soft}</td>
+            </tr>
+            <tr>
+              <td>浏览器:</td>
+              <td>{$config.browse_info}</td>
+              <td>PHP版本:</td>
+              <td>{$config.php_version}</td>
+            </tr>
+            <tr>
+              <td>服务器操作系统:</td>
+              <td>{$config.server_os}</td>
+              <td>PHP运行方式:</td>
+              <td>{$config.php_sapi}</td>
+            </tr>
+            <tr>
+              <td>网站目录</td>
+              <td>{$config.document_root}</td>
+              <td>MYSQL版本:</td>
+              <td>{$config.mysql_version}</td>
+            </tr>
+            <tr>
+              <td>程序版本:</td>
+              <td class="version">dcxy 1.0 <font size="-6" color="#BBB">(20170912)</font></td>
+              <td>上传文件:</td>
+              <td>可以 <font size="-6" color="#BBB">(最大文件：{$config.max_upload_size} )</font></td>
+            </tr>
+            <tr>
+              <td>程序编码:</td>
+              <td>UTF-8</td>
+              <td>当前时间:</td>
+              <td>{$config.time}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr></tr>
+          </tfoot>
+        </table>
+      </div>
+      <footer>
+        <h1 class="page-header">程序信息</h1>
+        <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <tbody>
+            <tr>
+              <td><span style="display:inline-block; width:8em">Thinkphp版本</span>{$config.think_version}</td>
+            </tr>
+            <tr>
+              <td><span style="display:inline-block;width:8em">技术支持</span> <a href="http://www.xingxings.cn/" target="_blank">星星</a></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </footer>
+    </div>
+{/block}

@@ -1,0 +1,60 @@
+ <html>           
+</html>
+
+            <!-- 单选题 -->
+            <div class="add-article-box">
+                <h2 class="add-article-box-title">
+                    <span>Q-1：单选题</span> 
+                     <span>
+                        <input type="radio" name="question[0][require]" value="0" checked/>必选
+                        <input type="radio" name="question[0][require]" value="1" />非必选
+                        <input type="hidden" name="question[0][type]" value="0"/>
+                    </span>
+
+                    <button type="button" class="btn btn-primary option-add">添加答案</button>
+                    <button type="button" class="close question-close" ><span>&times;</span></button>
+                </h2>
+                <div class="add-article-box-content">
+                    <input type="text" class="form-control" placeholder="请输入题目名称" name="question[0][name]" autocomplete="off" >  
+                    <input type="text" class="my-option" placeholder="请输入题目答案" name="question[0][option][]" autocomplete="off" >
+                    <button type="button" class="option-close"><span>&times;</span></button>
+                            
+                </div>
+            </div>
+            <!-- 多选题 -->
+            <div class="add-article-box">
+                <h2 class="add-article-box-title">
+                    <span>Q-2：多选题</span> 
+                     <span>
+                        <input type="radio" name="question[1][require]" value="0" checked/>必选
+                        <input type="radio" name="question[1][require]" value="1" />非必选
+                        <input type="hidden" name="question[1][type]" value="1"/>
+                    </span>
+
+                    <button type="button" class="btn btn-primary option-add">添加答案</button>
+                    <button type="button" class="close question-close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </h2>
+                <div class="add-article-box-content">
+                    <input type="text" class="form-control" placeholder="请输入题目名称" name="" autocomplete="off" >  
+                    <input type="text" class="my-option" placeholder="请输入题目答案" name="" autocomplete="off" >
+                    <button type="button" class="option-close"><span aria-hidden="true">&times;</span></button>
+                            
+                </div>
+            </div>
+             <!-- 文本题 -->
+             <div class="add-article-box">
+                <h2 class="add-article-box-title">
+                    <span>Q-3：文本题</span> 
+                     <span>
+                        <input type="radio" name="question[2][require]" value="0" checked/>必选
+                        <input type="radio" name="question[2][require]" value="1" />非必选
+                        <input type="hidden" name="question[2][type]" value="2"/>
+                    </span>
+
+                    <button type="button" class="close question-close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </h2>
+                <div class="add-article-box-content">
+                    <input type="text" class="form-control" placeholder="请输入问卷名称" name="question[2][title]" autocomplete="off" >  
+                    
+                </div>
+            </div>

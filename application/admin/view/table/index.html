@@ -1,0 +1,68 @@
+{extend name="base" /}
+{block name="title"}我的问卷{/block}
+{block name="css"}
+
+{/block}
+{block name="body"}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+      <form action="" method="post" >
+        <h1 class="page-header">我的问卷<span class="badge">7</span></h1>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">选择</span></th>
+                <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">问卷名称</span></th>
+                <th><span class="glyphicon glyphicon-list"></span> <span class="visible-lg">问卷介绍</span></th>
+<!--                 <th class="hidden-sm"><span class="glyphicon glyphicon-tag"></span> <span class="visible-lg">状态</span></th>
+               -->
+
+                <th class="hidden-sm"><span class="glyphicon glyphicon-comment"></span> <span class="visible-lg">作者</span></th>
+
+                <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">开始时间</span></th>
+                <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">结束时间</span></th>
+
+                <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
+              </tr>
+            </thead>
+            <tbody>
+            	{foreach $table as $vo}
+              <tr>
+                <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
+                <td class="article-title">{$vo.title}</td>
+                <td>{$vo.description}</td>
+                <td class="hidden-sm">{$vo.author}</td>
+                <td>{php} echo date('Y-m-d H:i:s',$vo['starttime']){/php}</td>
+                <td>{php} echo date('Y-m-d H:i:s',$vo['endtime']){/php}</td>
+                <td>
+                  <a href="">统计</a>
+                  <a href="/index/view/index/id/{$vo.id}" target="_blank">预览</a>
+                  <a href="/admin/table/edit/id/{$vo.id}">修改</a>
+                  <a href="">删除</a>       
+                </td>
+              </tr>
+              {/foreach}
+            </tbody>
+          </table>
+        </div>
+        <footer class="message_footer">
+          <nav>
+            <div class="btn-toolbar operation" role="toolbar">
+              <div class="btn-group" role="group"> <a class="btn btn-default" onClick="select()">全选</a> <a class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default" onClick="noselect()">不选</a> </div>
+              <div class="btn-group" role="group">
+                <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete">删除</button>
+              </div>
+            </div>
+            {$table->render()}
+          </nav>
+        </footer>
+      </form>
+    </div>
+{/block}
+{blcok name="js"}
+
+
+
+
+
+{/blcok}

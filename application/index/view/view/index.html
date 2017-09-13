@@ -1,0 +1,57 @@
+{extend name="base" /}
+{block name="title"}
+问卷调查
+{/block}
+{block name="body"}
+<div class="row">
+	<form action="/index/view/save" method="post" autocomplete="off" draggable="false">
+	  <div class="col-md-2"></div>
+	  <div class="col-md-8">
+	    <h1 class="page-header text-center">{$table.title}</h1>
+	    <div class="add-article-box">
+	      <h2 class="add-article-box-title"><span>说明</span></h2>
+	      <div class="add-article-box-content"> <span class="prompt-text">{$table.description}</span> </div>
+	    </div>
+		{foreach $table['question'] as $k=>$vo}
+		   		<div class="add-article-box">
+			      <h2 class="add-article-box-title"><span>问题{$k+1}-{$vo.name}</span></h2>
+				  <div class="add-article-box-content">
+			{switch name="vo.type"}
+			    {case value="0"}
+			        <label>
+			        	{foreach $vo['option'] as $value}
+						<input name="question[{$vo.id}]" value="{$value.name}" type="radio">{$value.name}
+						{/foreach}
+					</label>
+			    {/case}
+			    {case value="1"}
+			        <label>
+			        	{foreach $vo['option'] as $value}
+						<input name="question[{$vo.id}][]" value="{$value.name}" type="checkbox">{$value.name}
+						{/foreach}
+					</label>
+			    {/case}
+			    {default /}
+			        <textarea class="form-control" name="question[{$vo.id}]" rows="4" autocomplete="off"></textarea>
+			        <span class="prompt-text">请输入文本</span> 
+			{/switch}
+			</div>
+		</div>
+		{/foreach}    
+	    <div class="add-article-box">
+	      <h2 class="add-article-box-title"><span>验证码</span></h2>
+	      <div class="add-article-box-content"> 
+	      	<input type="text"  name="verify" class="form-control" placeholder="请输入验证码" required autofocus autocomplete="off" maxlength="10">
+          	<img src="{:captcha_src()}" alt="点击更换" title="点击更换" onclick="this.src='{:captcha_src()}?time='+Math.random()"/>
+	      	<span class="prompt-text">点击更换验证码</span> 
+	      </div>
+	      <div class="add-article-box-footer">
+	        <button class="btn btn-primary" type="submit" name="submit">提交</button>
+	      </div>
+	    </div>
+
+	  </div>
+	  <div class="col-md-2"></div>
+	</form>
+</div>
+{/block}
