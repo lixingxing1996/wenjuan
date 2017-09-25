@@ -11,7 +11,7 @@
  Target Server Version : 50635
  File Encoding         : utf-8
 
- Date: 09/12/2017 18:02:10 PM
+ Date: 09/25/2017 17:32:09 PM
 */
 
 SET NAMES utf8mb4;
@@ -121,7 +121,15 @@ CREATE TABLE `users` (
   `address` varchar(100) DEFAULT NULL COMMENT '用户地址',
   `phone` int(11) DEFAULT NULL COMMENT '用户手机',
   `head` varchar(50) DEFAULT NULL COMMENT '用户头像',
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `users`
+-- ----------------------------
+BEGIN;
+INSERT INTO `users` VALUES ('1', 'user1', 'userpassword', '1', '北京市', '2147483647', null, '1'), ('2', '用户', '7b79e788e94c1c41b6d4e1b1280c4bdb', '1', '北京市', '2147483647', '\\', '1'), ('3', '测试', '7b79e788e94c1c41b6d4e1b1280c4bdb', '0', '北京', '110', '、', '1');
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -1,0 +1,54 @@
+{extend name="base" /}
+{block name="title"}所有用户{/block}
+{block name="css"}
+
+{/block}
+{block name="body"}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+        <h1 class="page-header">所有用户<span class="badge">2</span></h1>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">ID</span></th>
+                <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">用户名</span></th>
+                <th><span class="glyphicon glyphicon-picture"></span> <span class="visible-lg">头像</span></th>
+                <th><span class="glyphicon glyphicon-bookmark"></span> <span class="visible-lg">密码</span></th>
+                <th><span class="glyphicon glyphicon-pushpin"></span> <span class="visible-lg">性别</span></th>
+                <th><span class="glyphicon glyphicon-phone"></span> <span class="visible-lg">手机</span></th>
+                <th><span class="glyphicon glyphicon-home"></span> <span class="visible-lg">地址</span></th>
+                <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
+              </tr>
+            </thead>
+            <tbody>
+            {foreach $users as $vo}
+				<tr>
+					<td>{$vo.id}</td>
+					<td>{$vo.username}</td>
+					<td>{$vo.head}</td>
+					<td>{$vo.password}</td>
+					<td>{php}echo $vo['sex']?'男':'女'{/php}</td>
+					<td>{$vo.phone}</td>
+					<td>{$vo.address}</td>
+					<td>
+						<a rel="1" name="see"    href="/admin/user/edit">修改</a> 
+						<a rel="1" name="delete" href="/admin/user/delete">删除</a> 
+					</td>
+				</tr>
+			{/foreach}
+            </tbody>
+          </table>
+        </div>
+        <footer class="message_footer">
+			<nav>
+			<div class="btn-toolbar operation" role="toolbar">
+			<div class="btn-group" role="group"> <a class="btn btn-default" onClick="select()">全选</a> <a class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default" onClick="noselect()">不选</a> </div>
+			<div class="btn-group" role="group">
+			<button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete">删除</button>
+			</div>
+			</div>
+			{$users->render()}
+			</nav>
+        </footer>
+    </div>
+{/block}

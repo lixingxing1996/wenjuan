@@ -1,0 +1,68 @@
+{extend name="base" /}
+{block name="title"}新建用户{/block}
+{block name="css"}
+
+{/block}
+{block name="body"}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+      <div class="row">
+        <form action="/admin/user/save" method="post" class="add-flink-form" autocomplete="off" draggable="false">
+          <div class="col-md-9">
+            <h1 class="page-header">新建用户</h1>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>用户名称</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" id="flink-name" name="username" class="form-control" placeholder="在此处输入名称" required autofocus autocomplete="off">
+                <span class="prompt-text">例如：张三</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>密码</span></h2>
+              <div class="add-article-box-content">
+                <input type="password" id="flink-url" name="password" class="form-control" placeholder="在此处输入密码" required autocomplete="off">
+                <input type="password" id="flink-url" name="repassword" class="form-control" placeholder="在此处确认密码" required autocomplete="off">
+                <span class="prompt-text">密码确认</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>头像地址</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" id="flink-imgurl" name="head" class="form-control" placeholder="在此处输入图像地址" required autocomplete="off">
+                <span class="prompt-text">图像地址是可选的</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>地址</span></h2>
+              <div class="add-article-box-content">
+                <textarea class="form-control" name="address" autocomplete="off"></textarea>
+                <span class="prompt-text">请输入联系地址</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>手机号码</span></h2>
+              <div class="add-article-box-content">
+                <textarea class="form-control" name="phone" autocomplete="off"></textarea>
+                <span class="prompt-text">请输入联系手机号码</span> </div>
+            </div>
+
+
+          </div>
+          <div class="col-md-3">
+            <h1 class="page-header">操作</h1>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>保存</span></h2>
+              <div class="add-article-box-content">
+               <!--  <p>
+                  <label>状态：</label>
+                  <span class="article-status-display">未增加</span>
+              	</p> -->
+                <p><label>性别：</label>
+                	<input type="radio" name="sex" value="1" checked />男
+                	<input type="radio" name="sex" value="0" />女
+                </p>
+              </div>
+              <div class="add-article-box-footer">
+                <button class="btn btn-primary" type="submit">增加</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+{/block}
