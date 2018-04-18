@@ -3,10 +3,10 @@ DCXT微型调查系统。v1.0测试版本
 ## 安装
 1，更改Application里面的database.php 改为自己的数据库信息，并把目录下的exam.sql导入
 2，虚拟主机指向public，而不是根目录，确认好public的.htaccess
+	#######################
 	<IfModule mod_rewrite.c>
 	  Options +FollowSymlinks -Multiviews
 	  RewriteEngine On
-
 	  RewriteCond %{REQUEST_FILENAME} !-d
 	  RewriteCond %{REQUEST_FILENAME} !-f
 	  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
