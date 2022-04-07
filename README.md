@@ -1,10 +1,12 @@
-DCXT微型调查系统。v1.0测试版本
-===============
-## 安装
-1，更改Application里面的database.php 改为自己的数据库信息，并把目录下的exam.sql导入
-===============
-2，虚拟主机指向public，而不是根目录，确认好public的.htaccess
-===============
+# 微型调查系统v1.0测试版本
+
+-  安装
+	1. 更改Application里面的database.php 改为自己的数据库信息，并把目录下的exam.sql导入
+	2. 虚拟主机指向public，而不是根目录，确认好public的.htaccess
+	3. 后台地址：域名/admin/login/index
+	4. 默认账户及登录密码：admin admin
+
+```xml
 	<IfModule mod_rewrite.c>
 	  Options +FollowSymlinks -Multiviews
 	  RewriteEngine On
@@ -12,17 +14,16 @@ DCXT微型调查系统。v1.0测试版本
 	  RewriteCond %{REQUEST_FILENAME} !-f
 	  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
 	</IfModule>
-
-3，后台地址：域名/admin/login/index
-===============
-4，默认账户及登录密码：admin admin
+```
 
 
-## 目录结构
+
+-  目录结构
 
 初始的目录结构如下：
 
-www  WEB部署目录（或者子目录）
+```html
+www   WEB部署目录（或者子目录）
 ├─application           应用目录
 │  ├─common             公共模块目录（可以更改）
 │  ├─admin              后台目录
@@ -75,11 +76,13 @@ www  WEB部署目录（或者子目录）
 ├─LICENSE.txt           授权说明文件
 ├─README.md             README 文件
 ├─think                 命令行入口文件
-~~~
+```
 
-> router.php用于php自带webserver支持，可用于快速测试
-> 切换到public目录后，启动命令：php -S localhost:8888  router.php
-> 上面的目录结构和名称是可以改变的，这取决于你的入口文件和配置参数。
+```shell
+router.php用于php自带webserver支持，可用于快速测试
+切换到public目录后，启动命令：php -S localhost:8888  router.php
+上面的目录结构和名称是可以改变的，这取决于你的入口文件和配置参数。
+```
 
 
 ## 版权信息
